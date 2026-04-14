@@ -21,6 +21,8 @@ add_executable(pokemon
     src/main.cpp
     src/battler.h
     src/elements.h
+    src/imove.h
+    src/moves.h
 )
 
 # Optional: Enable common warnings to keep your code sharp
