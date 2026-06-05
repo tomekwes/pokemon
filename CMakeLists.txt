@@ -25,6 +25,7 @@ add_executable(pokemon
     src/moves.h
     src/icondition.h
     src/conditions.h
+    src/iattempt.h
 
 )
 

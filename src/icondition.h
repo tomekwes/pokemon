@@ -5,6 +5,7 @@
 
 template <typename T> struct ICondition {
   virtual bool operator()(T param) = 0;
+  virtual ~ICondition() = default;
 };
 
 struct IBattleCondition : ICondition<Battle> {
