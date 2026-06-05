@@ -23,6 +23,9 @@ add_executable(pokemon
     src/elements.h
     src/imove.h
     src/moves.h
+    src/icondition.h
+    src/conditions.h
+
 )
 
 # Optional: Enable common warnings to keep your code sharp

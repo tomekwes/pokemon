@@ -4,10 +4,10 @@
 #include "imove.h"
 #include <iostream>
 
-struct Example : public IMove {
-
+struct Example : public Move {
+  using Move::Move;
   void Execute(Battle battle) override {
-    std::cout << "Move executed" << std::endl;
+    std::cout << "Move " << name_ << " executed" << std::endl;
     (void)battle;
   }
 };

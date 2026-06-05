@@ -11,3 +11,5 @@ enum class Element {
   FAIRY,
   PSYCHIC
 };
+
+enum class Weather { RAINING, SNOWING, SUNNY, WINDY, NONE };

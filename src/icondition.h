@@ -1,0 +1,16 @@
+#pragma once
+
+#include "battle.h"
+#include "battler.h"
+
+template <typename T> struct ICondition {
+  virtual bool operator()(T param) = 0;
+};
+
+struct IBattleCondition : ICondition<Battle> {
+  virtual bool operator()(Battle battle) = 0;
+};
+
+struct IBattlerCondition : ICondition<Battler> {
+  virtual bool operator()(Battler battle) = 0;
+};
