@@ -17,10 +17,10 @@ struct Example : public Move {
 struct WithPrecondition : public IMove {
 
   WithPrecondition(std::unique_ptr<IMove> mv,
-                   std::unique_ptr<IBattleCondition> bc)
+                   std::unique_ptr<ICondition<Battle>> bc)
       : move_(std::move(mv)), cond_(std::move(bc)) {}
   std::unique_ptr<IMove> move_;
-  std::unique_ptr<IBattleCondition> cond_;
+  std::unique_ptr<ICondition<Battle>> cond_;
 
   void Execute(Battle battle) override {
     if ((*cond_)(battle)) {

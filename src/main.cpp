@@ -17,7 +17,9 @@ int main() {
   Example mv(std::string("double tap"), Element::FIGHTING);
   mv.Execute(bat);
 
-  WithPrecondition mv2(std::make_unique<Example>("Fireball", Element::FIRE),
-                       std::make_unique<OnlyInRain>());
+  WithPrecondition mv2(
+      std::make_unique<Example>("Fireball", Element::FIRE),
+      std::make_unique<And<Battle, InRain, InSnow>>(InRain{}, InSnow{}));
+
   mv2.Execute(bat);
 }

@@ -26,6 +26,9 @@ add_executable(pokemon
     src/icondition.h
     src/conditions.h
     src/iattempt.h
+    src/attempts.h
+    src/inumber.h
+    src/utils.h
 
 )
 
