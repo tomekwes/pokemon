@@ -14,9 +14,13 @@ int main() {
   Battler pikatchu{"Pikatchu", 100.0, {Element::ELECTRIC}};
   Battle arena;
   arena.weather_ = Weather::RAINING;
+  arena.attacker_ = dragonite;
+  arena.defender_ = pikatchu;
 
   Example mv(std::string("double tap"), Element::FIGHTING);
   mv.Execute(arena);
+
+  arena.SwapPositions();
 
   WithPrecondition mv2(
       std::make_unique<Example>("Fireball", Element::FIRE),

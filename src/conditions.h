@@ -12,14 +12,12 @@
 
 struct InRain : IBattleCondition {
   bool operator()(Battle battle) override {
-    std::cout << "InRain making the check" << std::endl;
     return battle.weather_ == Weather::RAINING;
   }
 };
 
 struct InSnow : IBattleCondition {
   bool operator()(Battle battle) override {
-    std::cout << "InSnow making the check" << std::endl;
     return battle.weather_ == Weather::SNOWING;
   }
 };

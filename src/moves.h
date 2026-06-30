@@ -22,11 +22,14 @@ struct WithPrecondition : public IMove {
   std::unique_ptr<IMove> move_;
   std::unique_ptr<ICondition<Battle>> cond_;
 
+  std::string GetName() const override { return "WithPrecondition"; }
+
   void Execute(Battle battle) override {
     if ((*cond_)(battle)) {
       move_->Execute(battle);
     } else {
-      std::cout << "Move failed on this battlefiled" << std::endl;
+      std::cout << "Move " << move_->GetName() << " failed on this battlefiled"
+                << std::endl;
     }
   }
 };
@@ -36,14 +39,19 @@ struct WithAplicability : public IMove {
   WithAplicability(std::unique_ptr<IMove> mv,
                    std::unique_ptr<IBattlerCondition> bc)
       : move_(std::move(mv)), cond_(std::move(bc)) {}
-  std::unique_ptr<IMove> move_;
-  std::unique_ptr<IBattlerCondition> cond_;
+
+  // maybe better to return move_->GetName() ?
+  std::string GetName() const override { return "WithAplicability"; }
 
   void Execute(Battle battle) override {
     if ((*cond_)(battle.defender_)) {
       move_->Execute(battle);
     } else {
-      std::cout << "Move failed against this defender" << std::endl;
+      std::cout << "Move " << move_->GetName()
+                << " failed against this defender" << std::endl;
     }
   }
+
+  std::unique_ptr<IMove> move_;
+  std::unique_ptr<IBattlerCondition> cond_;
 };
