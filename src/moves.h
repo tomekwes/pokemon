@@ -9,8 +9,8 @@
 struct Example : public Move {
   using Move::Move;
   void Execute(Battle battle) override {
-    std::cout << "Move " << name_ << " executed" << std::endl;
-    (void)battle;
+    std::cout << "Move " << name_ << " executed by " << battle.attacker_.name
+              << std::endl;
   }
 };
 

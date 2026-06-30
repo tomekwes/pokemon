@@ -10,16 +10,17 @@
 int main() {
   std::cout << "A battle begins" << std::endl;
 
-  Battler b1{"b1", 100.0, {Element::DRAGON}};
-  Battle bat;
-  bat.weather_ = Weather::RAINING;
+  Battler dragonite{"Dragonite", 100.0, {Element::DRAGON}};
+  Battler pikatchu{"Pikatchu", 100.0, {Element::ELECTRIC}};
+  Battle arena;
+  arena.weather_ = Weather::RAINING;
 
   Example mv(std::string("double tap"), Element::FIGHTING);
-  mv.Execute(bat);
+  mv.Execute(arena);
 
   WithPrecondition mv2(
       std::make_unique<Example>("Fireball", Element::FIRE),
       std::make_unique<And<Battle, InRain, InSnow>>(InRain{}, InSnow{}));
 
-  mv2.Execute(bat);
+  mv2.Execute(arena);
 }

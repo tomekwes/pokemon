@@ -3,8 +3,12 @@
 #include "battle.h"
 #include "elements.h"
 #include "icondition.h"
+#include "itarget.h"
 #include "utils.h"
+#include <algorithm>
+#include <functional>
 #include <iostream>
+#include <memory>
 
 struct InRain : IBattleCondition {
   bool operator()(Battle battle) override {
@@ -44,4 +48,27 @@ struct Or : ICondition<T> {
 
   LHS lhs_;
   RHS rhs_;
+};
+
+struct For : ICondition<Battle> {
+
+  bool operator()(Battle input) override {
+    return std::invoke(*cond_, target_->Resolve(input));
+  }
+
+  std::unique_ptr<ITarget> target_;
+  std::unique_ptr<ICondition<Battler>> cond_;
+};
+
+struct HasElement : ICondition<Battler> {
+
+  HasElement(Element e) : elem_{e} {}
+
+  bool operator()(Battler input) override {
+
+    auto it = std::find(input.elements.begin(), input.elements.end(), elem_);
+    return it != input.elements.end();
+  }
+
+  const Element elem_;
 };
