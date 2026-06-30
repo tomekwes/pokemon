@@ -3,6 +3,7 @@
 #include "conditions.h"
 #include "elements.h"
 #include "imove.h"
+#include "itarget.h"
 #include "moves.h"
 #include <iostream>
 #include <memory>
@@ -27,4 +28,8 @@ int main() {
       std::make_unique<And<Battle, InRain, InSnow>>(InRain{}, InSnow{}));
 
   mv2.Execute(arena);
+
+  std::cout << For{std::make_unique<Attacker>(),
+                   std::make_unique<HasElement>(Element::ELECTRIC)}(arena)
+            << std::endl;
 }

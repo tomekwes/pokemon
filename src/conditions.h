@@ -50,6 +50,9 @@ struct Or : ICondition<T> {
 
 struct For : ICondition<Battle> {
 
+  For(std::unique_ptr<ITarget> t, std::unique_ptr<ICondition<Battler>> c)
+      : target_(std::move(t)), cond_(std::move(c)) {}
+
   bool operator()(Battle input) override {
     return std::invoke(*cond_, target_->Resolve(input));
   }

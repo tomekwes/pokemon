@@ -4,16 +4,16 @@
 
 struct ITarget {
 
-  virtual Battler Resolve(Battle) = 0;
-  virtual ~ITarget();
+  virtual Battler Resolve(Battle const &) = 0;
+  virtual ~ITarget() = default;
 };
 
 struct Attacker : ITarget {
 
-  Battler Resolve(Battle batttle) override { return batttle.attacker_; }
+  Battler Resolve(Battle const &batttle) override { return batttle.attacker_; }
 };
 
 struct Defender : ITarget {
 
-  Battler Resolve(Battle batttle) override { return batttle.defender_; }
+  Battler Resolve(Battle const &batttle) override { return batttle.defender_; }
 };
