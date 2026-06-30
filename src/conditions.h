@@ -4,7 +4,6 @@
 #include "elements.h"
 #include "icondition.h"
 #include "utils.h"
-#include <concepts>
 #include <iostream>
 
 struct InRain : IBattleCondition {

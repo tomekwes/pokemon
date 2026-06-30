@@ -29,6 +29,7 @@ add_executable(pokemon
     src/attempts.h
     src/inumber.h
     src/utils.h
+    src/itarget.h
 
 )
 
