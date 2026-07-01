@@ -7,7 +7,6 @@
 #include "utils.h"
 #include <algorithm>
 #include <functional>
-#include <iostream>
 #include <memory>
 
 struct InRain : IBattleCondition {
