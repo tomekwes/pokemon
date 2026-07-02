@@ -9,7 +9,7 @@
 struct Example : public Move {
   using Move::Move;
   void Execute(Battle battle) override {
-    std::cout << "Move " << name_ << " executed by " << battle.attacker_.name
+    std::cout << "Move " << name_ << " executed by " << battle.attacker_->name_
               << std::endl;
   }
 };
@@ -44,7 +44,7 @@ struct WithAplicability : public IMove {
   std::string GetName() const override { return "WithAplicability"; }
 
   void Execute(Battle battle) override {
-    if ((*cond_)(battle.defender_)) {
+    if ((*cond_)(*battle.defender_)) {
       move_->Execute(battle);
     } else {
       std::cout << "Move " << move_->GetName()

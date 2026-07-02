@@ -32,6 +32,7 @@ add_executable(pokemon
     src/itarget.h
     src/ieffect.h
     src/effects.h
+    src/pokemons.h
 )
 
 # Optional: Enable common warnings to keep your code sharp

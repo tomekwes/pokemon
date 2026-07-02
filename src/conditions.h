@@ -10,13 +10,13 @@
 #include <memory>
 
 struct InRain : IBattleCondition {
-  bool operator()(Battle battle) override {
+  bool operator()(Battle const &battle) override {
     return battle.weather_ == Weather::RAINING;
   }
 };
 
 struct InSnow : IBattleCondition {
-  bool operator()(Battle battle) override {
+  bool operator()(Battle const &battle) override {
     return battle.weather_ == Weather::SNOWING;
   }
 };
@@ -28,7 +28,9 @@ struct And : ICondition<T> {
 
   And(LHS lhs, RHS rhs) : lhs_(std::move(lhs)), rhs_(std::move(rhs)) {}
 
-  bool operator()(T input) override { return lhs_(input) && rhs_(input); }
+  bool operator()(T const &input) override {
+    return lhs_(input) && rhs_(input);
+  }
 
   LHS lhs_;
   RHS rhs_;
@@ -41,7 +43,9 @@ struct Or : ICondition<T> {
 
   Or(LHS lhs, RHS rhs) : lhs_(std::move(lhs)), rhs_(std::move(rhs)) {}
 
-  bool operator()(T input) override { return lhs_(input) || rhs_(input); }
+  bool operator()(T const &input) override {
+    return lhs_(input) || rhs_(input);
+  }
 
   LHS lhs_;
   RHS rhs_;
@@ -52,8 +56,8 @@ struct For : ICondition<Battle> {
   For(std::unique_ptr<ITarget> t, std::unique_ptr<ICondition<Battler>> c)
       : target_(std::move(t)), cond_(std::move(c)) {}
 
-  bool operator()(Battle input) override {
-    return std::invoke(*cond_, target_->Resolve(input));
+  bool operator()(Battle const &input) override {
+    return std::invoke(*cond_, *(target_->Resolve(input)));
   }
 
   std::unique_ptr<ITarget> target_;
@@ -64,10 +68,10 @@ struct HasElement : ICondition<Battler> {
 
   HasElement(Element e) : elem_{e} {}
 
-  bool operator()(Battler input) override {
+  bool operator()(Battler const &input) override {
 
-    auto it = std::find(input.elements.begin(), input.elements.end(), elem_);
-    return it != input.elements.end();
+    auto it = std::find(input.elements_.begin(), input.elements_.end(), elem_);
+    return it != input.elements_.end();
   }
 
   const Element elem_;

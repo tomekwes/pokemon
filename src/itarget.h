@@ -1,19 +1,24 @@
 #pragma once
 #include "battle.h"
 #include "battler.h"
+#include <memory>
 
 struct ITarget {
 
-  virtual Battler Resolve(Battle const &) = 0;
+  virtual std::shared_ptr<Battler> Resolve(Battle const &) = 0;
   virtual ~ITarget() = default;
 };
 
 struct Attacker : ITarget {
 
-  Battler Resolve(Battle const &batttle) override { return batttle.attacker_; }
+  std::shared_ptr<Battler> Resolve(Battle const &batttle) override {
+    return batttle.attacker_;
+  }
 };
 
 struct Defender : ITarget {
 
-  Battler Resolve(Battle const &batttle) override { return batttle.defender_; }
+  std::shared_ptr<Battler> Resolve(Battle const &batttle) override {
+    return batttle.defender_;
+  }
 };
