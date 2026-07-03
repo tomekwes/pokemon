@@ -1,7 +1,7 @@
 #pragma once
 
 #include "battle.h"
-#include "ieffect.h"
+#include "interface/ieffect.h"
 #include <vector>
 
 struct NoEffect : IEffect {

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "battle.h"
-#include "iattempt.h"
-#include "icondition.h"
-#include "inumber.h"
+#include "interface/iattempt.h"
+#include "interface/icondition.h"
+#include "interface/inumber.h"
 #include <memory>
 
 struct Attempt : IAttempt {

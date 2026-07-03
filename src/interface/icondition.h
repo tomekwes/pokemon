@@ -1,7 +1,7 @@
 #pragma once
 
-#include "battle.h"
-#include "battler.h"
+#include "../battle.h"
+#include "../battler.h"
 
 template <typename T> struct ICondition {
   virtual bool operator()(T const &param) = 0;

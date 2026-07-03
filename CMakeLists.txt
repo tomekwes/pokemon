@@ -21,16 +21,16 @@ add_executable(pokemon
     src/main.cpp
     src/battler.h
     src/elements.h
-    src/imove.h
+    src/interface/imove.h
     src/moves.h
-    src/icondition.h
+    src/interface/icondition.h
     src/conditions.h
-    src/iattempt.h
+    src/interface/iattempt.h
     src/attempts.h
-    src/inumber.h
+    src/interface/inumber.h
     src/utils.h
-    src/itarget.h
-    src/ieffect.h
+    src/interface/itarget.h
+    src/interface/ieffect.h
     src/effects.h
     src/pokemons.h
 )

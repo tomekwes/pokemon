@@ -2,8 +2,8 @@
 
 #include "battle.h"
 #include "elements.h"
-#include "icondition.h"
-#include "itarget.h"
+#include "interface/icondition.h"
+#include "interface/itarget.h"
 #include "utils.h"
 #include <algorithm>
 #include <functional>

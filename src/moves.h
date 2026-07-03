@@ -1,8 +1,8 @@
 #pragma once
 
 #include "battle.h"
-#include "icondition.h"
-#include "imove.h"
+#include "interface/icondition.h"
+#include "interface/imove.h"
 #include <iostream>
 #include <memory>
 

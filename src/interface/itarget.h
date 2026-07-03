@@ -1,6 +1,6 @@
 #pragma once
-#include "battle.h"
-#include "battler.h"
+#include "../battle.h"
+#include "../battler.h"
 #include <memory>
 
 struct ITarget {

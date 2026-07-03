@@ -1,6 +1,6 @@
 #pragma once
 
-#include "battle.h"
+#include "../battle.h"
 
 struct IAttempt {
   virtual void Execute(Battle) = 0;

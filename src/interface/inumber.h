@@ -1,5 +1,5 @@
 #pragma once
-#include "battle.h"
+#include "../battle.h"
 
 struct INumber {
 

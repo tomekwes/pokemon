@@ -2,8 +2,8 @@
 #include "battler.h"
 #include "conditions.h"
 #include "elements.h"
-#include "imove.h"
-#include "itarget.h"
+#include "interface/imove.h"
+#include "interface/itarget.h"
 #include "moves.h"
 #include "pokemons.h"
 #include <iostream>
