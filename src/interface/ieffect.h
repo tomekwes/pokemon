@@ -4,7 +4,7 @@
 
 struct IEffect {
 
-  virtual void Apply(Battle) = 0;
+  virtual void Apply(Battle &) = 0;
 
   virtual ~IEffect() = default;
 };
