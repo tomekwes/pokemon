@@ -33,6 +33,7 @@ add_executable(pokemon
     src/interface/ieffect.h
     src/effects.h
     src/pokemons.h
+    src/pokemons.cpp
 )
 
 # Optional: Enable common warnings to keep your code sharp
