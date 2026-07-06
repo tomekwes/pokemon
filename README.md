@@ -7,7 +7,7 @@ implementation of proposed architecture
 ## Build and run
 ```bash
 # Clone the repository
-git clone https://github.com/tomekwes/pokemon.git pokemnon
+git clone https://github.com/tomekwes/pokemon.git pokemon
 cd pokemon
 
 # Configure and Build

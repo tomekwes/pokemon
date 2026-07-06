@@ -28,7 +28,7 @@ struct WithPrecondition : public IMove {
     if ((*cond_)(battle)) {
       move_->Execute(battle);
     } else {
-      std::cout << "Move " << move_->GetName() << " failed on this battlefiled"
+      std::cout << "Move " << move_->GetName() << " failed on this battlefield"
                 << std::endl;
     }
   }
