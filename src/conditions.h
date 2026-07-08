@@ -9,6 +9,8 @@
 #include <functional>
 #include <memory>
 
+using utils::HaveSameCallOperator;
+
 struct InRain : IBattleCondition {
   bool operator()(Battle const &battle) override {
     return battle.weather_ == Weather::RAINING;

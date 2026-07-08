@@ -1,9 +1,10 @@
 #pragma once
 
 #include "battle.h"
+#include "battler.h"
 #include "interface/ieffect.h"
-#include "interface/inumber.h"
 #include "interface/itarget.h"
+#include "utils.h"
 #include <memory>
 #include <vector>
 
@@ -24,14 +25,15 @@ struct SequenceEffects : IEffect {
 
 struct LowerDefense : IEffect {
 
-  LowerDefense(std::unique_ptr<ITarget> t, std::unique_ptr<INumber> v)
-      : target_(std::move(t)), value_(std::move(v)) {}
+  LowerDefense(std::unique_ptr<ITarget> t) : target_(std::move(t)) {}
 
   void Apply(Battle &b) {
     auto who = target_->Resolve(b);
-    who->defense_ -= value_->Calculate(b);
+    const auto err = who->defense_.lower_stage();
+    if (err != StageStatError::OK) {
+      std::cout << utils::to_string(err) << std::endl;
+    }
   }
 
   std::unique_ptr<ITarget> target_;
-  std::unique_ptr<INumber> value_;
 };

@@ -19,7 +19,9 @@ struct CurrentDefense : INumber {
 
   CurrentDefense(std::unique_ptr<ITarget> t) : target_(std::move(t)) {}
 
-  double Calculate(Battle &b) override { return target_->Resolve(b)->defense_; }
+  double Calculate(Battle &b) override {
+    return target_->Resolve(b)->defense_.get_stat_value();
+  }
 
   std::unique_ptr<ITarget> target_;
 };
