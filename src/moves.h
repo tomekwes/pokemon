@@ -61,14 +61,14 @@ struct WithAplicability : public IMove {
 
 struct Leer : public IMove {
 
-  void Execute(Battle &battle) override {
-
+  Leer() {
+    // Leer has 25% chance to fail so 75% to suceed
+    cond_ = std::make_unique<Condition>(std::make_unique<Prob<Battle>>(75.0));
     auto ld = std::make_unique<LowerDefense>(std::make_unique<Defender>());
-    auto cond =
-        std::make_unique<Condition>(std::make_unique<Prob<Battle>>(25.0));
-    cond->on_pass_ = std::move(ld);
-
-    cond->Apply(battle);
+    cond_->on_pass_ = std::move(ld);
   }
+
+  void Execute(Battle &battle) override { cond_->Apply(battle); }
   std::string GetName() const override { return "Leer"; }
+  std::unique_ptr<Condition> cond_;
 };
