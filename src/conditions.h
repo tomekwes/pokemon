@@ -24,11 +24,10 @@ struct InSnow : IBattleCondition {
   }
 };
 
+// based purely on luck
 template <typename T> struct Prob : ICondition<T> {
-
-  Prob(double prob) : rd(), gen(rd()), prob_(prob) {}
-  bool operator()(T const &input) override {
-
+  Prob(double prob) : rd(), gen(rd()), prob_(prob / 100.0) {}
+  bool operator()(T const &) override {
     std::bernoulli_distribution dist(prob_);
     return dist(gen);
   }

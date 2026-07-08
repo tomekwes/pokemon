@@ -1,9 +1,11 @@
 #pragma once
 
 #include "battle.h"
+#include "conditions.h"
+#include "effects.h"
 #include "interface/icondition.h"
-#include "interface/ieffect.h"
 #include "interface/imove.h"
+#include "interface/itarget.h"
 #include <iostream>
 #include <memory>
 
@@ -59,9 +61,14 @@ struct WithAplicability : public IMove {
 
 struct Leer : public IMove {
 
-  Leer(std::unique_ptr<IEffect> ld) : ld_(std::move(ld)) {}
+  void Execute(Battle &battle) override {
 
-  void Execute(Battle &battle) override { ld_->Apply(battle); }
+    auto ld = std::make_unique<LowerDefense>(std::make_unique<Defender>());
+    auto cond =
+        std::make_unique<Condition>(std::make_unique<Prob<Battle>>(25.0));
+    cond->on_pass_ = std::move(ld);
+
+    cond->Apply(battle);
+  }
   std::string GetName() const override { return "Leer"; }
-  std::unique_ptr<IEffect> ld_;
 };
