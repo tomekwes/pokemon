@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <functional>
 #include <memory>
+#include <random>
 
 using utils::HaveSameCallOperator;
 
@@ -21,6 +22,19 @@ struct InSnow : IBattleCondition {
   bool operator()(Battle const &battle) override {
     return battle.weather_ == Weather::SNOWING;
   }
+};
+
+template <typename T> struct Prob : ICondition<T> {
+
+  Prob(double prob) : rd(), gen(rd()), prob_(prob) {}
+  bool operator()(T const &input) override {
+
+    std::bernoulli_distribution dist(prob_);
+    return dist(gen);
+  }
+  std::random_device rd;
+  std::mt19937 gen;
+  double prob_{0.0};
 };
 
 template <typename T, typename LHS, typename RHS>
