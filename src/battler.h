@@ -72,6 +72,7 @@ struct Battler {
   std::string name_{};
   double hp_{};
   StageStat defense_;
+  int level_{};
   std::vector<Element> elements_{};
   std::vector<std::unique_ptr<IMove>> moves_{};
 

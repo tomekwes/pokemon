@@ -14,13 +14,13 @@ using utils::HaveSameCallOperator;
 
 struct InRain : IBattleCondition {
   bool operator()(Battle const &battle) override {
-    return battle.weather_ == Weather::RAINING;
+    return battle.weather_ == Weather::RAIN;
   }
 };
 
 struct InSnow : IBattleCondition {
   bool operator()(Battle const &battle) override {
-    return battle.weather_ == Weather::SNOWING;
+    return battle.weather_ == Weather::SNOW;
   }
 };
 

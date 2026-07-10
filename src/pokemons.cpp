@@ -9,7 +9,7 @@ std::shared_ptr<Battler> make_machop() {
 
   std::vector<std::unique_ptr<IMove>> moves;
   moves.push_back(std::move(leer));
-  return std::make_shared<Battler>(std::string{"Machop"}, 70.0, 50.0,
+  return std::make_shared<Battler>(std::string{"Machop"}, 70.0, 50.0, 1,
                                    std::vector<Element>{Element::FIGHTING},
                                    std::move(moves));
 }
